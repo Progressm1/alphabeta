@@ -11,9 +11,8 @@ def alphabeta(depth, idx, maximize, vals, alpha, beta):
         for i in range(0,2):
             val = alphabeta(depth + 1, idx * 2 + i, False, vals, alpha, beta)
             best = max(best, val)
-            if best < beta:
-                return best
-            alpha = max(alpha, best)
+            if best < beta :
+                alpha = max(alpha, best)
         return best
     else:
         best = MAX
@@ -21,8 +20,7 @@ def alphabeta(depth, idx, maximize, vals, alpha, beta):
             val = alphabeta(depth + 1, idx * 2 + i, True, vals, alpha, beta)
             best = min(best, val)
             if best > alpha:
-                return best
-            beta = min(beta, best)
+                beta = min(beta, best)
         return best
 
 if __name__ == "__main__":
