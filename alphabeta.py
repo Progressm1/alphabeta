@@ -2,16 +2,16 @@ import math
 
 MIN, MAX = -1000, 1000
 
-def alphabeta(depth, idx, maximizing, vals, alpha, beta):
+def alphabeta(depth, idx, maximize, vals, alpha, beta):
     if depth == int(math.log(len(vals), 2)): # checking if leaf node
         return vals[idx]
 
-    if maximizing:
+    if maximize:
         best = MIN
-        for i in range(2):
+        for i in range(0,2):
             val = alphabeta(depth + 1, idx * 2 + i, False, vals, alpha, beta)
             best = max(best, val)
-            if best >= beta:
+            if best < beta:
                 return best
             alpha = max(alpha, best)
         return best
@@ -20,7 +20,7 @@ def alphabeta(depth, idx, maximizing, vals, alpha, beta):
         for i in range(2):
             val = alphabeta(depth + 1, idx * 2 + i, True, vals, alpha, beta)
             best = min(best, val)
-            if best <= alpha:
+            if best > alpha:
                 return best
             beta = min(beta, best)
         return best
